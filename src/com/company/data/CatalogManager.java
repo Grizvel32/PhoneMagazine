@@ -55,70 +55,135 @@ public class CatalogManager {
                             int romMemory,
                             int ramMemory,
                             String processor,
-                            double price){
+                            double price) {
 
         currentId++;
 
-        Phone phone = new Phone(currentId,brand,model,romMemory,ramMemory,processor,price);
+        Phone phone = new Phone(currentId, brand, model, romMemory, ramMemory, processor, price);
 
         phones.add(phone);
     }
 
-    public ArrayList<Phone> getPhones(){
+    public ArrayList<Phone> getPhones() {
         return phones;
     }
 
-    public void deletePhoneById(int id) throws Exception{
+    public void deletePhoneById(int id) throws Exception {
         int index = findIndexById(id);
 
-        if(index == -1){
+        if (index == -1) {
             throw new Exception("Телефон с таким ID не найден");
         }
 
         phones.remove(index);
     }
 
-    public void setNewPhonePriceById(int id, double price) throws Exception{
+    public void setNewPhoneBrandById(int id, String brand) throws Exception {
         int index = findIndexById(id);
 
-        if(index == -1){
+        if (index == -1) {
             throw new Exception("Телефон с таким ID не найден");
         }
 
         Phone findPhone = phones.get(index);
 
-        if(price<0){
+
+        findPhone.setBrand(brand);
+    }
+
+    public void setNewPhoneModelById(int id, String model) throws Exception {
+        int index = findIndexById(id);
+
+        if (index == -1) {
+            throw new Exception("Телефон с таким ID не найден");
+        }
+
+        Phone findPhone = phones.get(index);
+
+
+        findPhone.setModel(model);
+    }
+
+    public void setNewPhoneRomMemoryById(int id, int romMemory) throws Exception {
+        int index = findIndexById(id);
+
+        if (index == -1) {
+            throw new Exception("Телефон с таким ID не найден");
+        }
+
+        Phone findPhone = phones.get(index);
+
+
+        findPhone.setRomMemory(romMemory);
+    }
+
+    public void setNewPhoneRamMemoryById(int id, int ramMemory) throws Exception {
+        int index = findIndexById(id);
+
+        if (index == -1) {
+            throw new Exception("Телефон с таким ID не найден");
+        }
+
+        Phone findPhone = phones.get(index);
+
+
+        findPhone.setRomMemory(ramMemory);
+    }
+
+    public void setNewPhoneCPUById(int id, String cpu) throws Exception {
+        int index = findIndexById(id);
+
+        if (index == -1) {
+            throw new Exception("Телефон с таким ID не найден");
+        }
+
+        Phone findPhone = phones.get(index);
+
+
+        findPhone.setProcessor(cpu);
+    }
+
+    public void setNewPhonePriceById(int id, double price) throws Exception {
+        int index = findIndexById(id);
+
+        if (index == -1) {
+            throw new Exception("Телефон с таким ID не найден");
+        }
+
+        Phone findPhone = phones.get(index);
+
+        if (price < 0) {
             throw new Exception("Некорректная цена");
         }
 
         findPhone.setPrice(price);
     }
 
-    public void fillCatalogWithPhones(){
+    public void fillCatalogWithPhones() {
         currentId = 0;
         phones = new ArrayList<>();
 
-        addNewPhone("Samsung", "Galaxy S10", 128, 8, "Exynos 9820",59900);
-        addNewPhone("Xiaomi", "Mi 10T Pro", 256, 8, "Snapdragon 865",45950);
-        addNewPhone("Iphone", "11", 128, 4, "A13 Bionic",51000);
+        addNewPhone("Samsung", "Galaxy S10", 128, 8, "Exynos 9820", 59900);
+        addNewPhone("Xiaomi", "Mi 10T Pro", 256, 8, "Snapdragon 865", 45950);
+        addNewPhone("Iphone", "11", 128, 4, "A13 Bionic", 51000);
     }
 
-    public void saveToDataFile(String fileName) throws Exception{
+    public void saveToDataFile(String fileName) throws Exception {
         ObjectOutputStream outputStream = null;
         try {
             outputStream = new ObjectOutputStream(new FileOutputStream(fileName));
             outputStream.writeObject(phones);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw e;
 
-        }finally {
-            if (outputStream!=null){
+        } finally {
+            if (outputStream != null) {
                 outputStream.close();
             }
         }
     }
 
-    public void loadFromDataFile(String fileName)throws Exception{
+    public void loadFromDataFile(String fileName) throws Exception {
         ObjectInputStream inputStream = null;
         try {
             inputStream = new ObjectInputStream(new FileInputStream(fileName));
@@ -127,11 +192,11 @@ public class CatalogManager {
 
             currentId = getMaxId();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             throw e;
 
-        }finally {
-            if (inputStream!=null){
+        } finally {
+            if (inputStream != null) {
                 inputStream.close();
             }
         }
