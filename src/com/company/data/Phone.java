@@ -1,4 +1,4 @@
-package com.company;
+package com.company.data;
 
 public class Phone {
 
@@ -10,18 +10,26 @@ public class Phone {
     private int romMemory;
     private int ramMemory;
     private String processor;
+    private double price;
 
     //endregion
 
     //region Constructors
 
-    public Phone(int id, String brand, String model, int romMemory, int ramMemory, String processor) {
+    public Phone(int id, String brand,
+                 String model,
+                 int romMemory,
+                 int ramMemory,
+                 String processor,
+                 double price) {
+
         this.id = id;
         this.brand = brand;
         this.model = model;
         this.romMemory = romMemory;
         this.ramMemory = ramMemory;
         this.processor = processor;
+        this.price = price;
     }
 
     //endregion
@@ -54,9 +62,18 @@ public class Phone {
         this.processor = processor;
     }
 
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     //endregion
 
     //region Getters
+
+
+    public int getId() {
+        return id;
+    }
 
     public String getBrand() {
         return brand;
@@ -78,5 +95,8 @@ public class Phone {
         return processor;
     }
 
+    public double getPrice() {
+        return price;
+    }
     //endregion
 }
