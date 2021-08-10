@@ -118,6 +118,24 @@ public class CatalogManager {
         }
     }
 
+    public void loadFromDataFile(String fileName)throws Exception{
+        ObjectInputStream inputStream = null;
+        try {
+            inputStream = new ObjectInputStream(new FileInputStream(fileName));
+
+            phones = (ArrayList<Phone>) inputStream.readObject();
+
+            currentId = getMaxId();
+
+        }catch (Exception e){
+            throw e;
+
+        }finally {
+            if (inputStream!=null){
+                inputStream.close();
+            }
+        }
+    }
     //endregion
 }
 

@@ -1,9 +1,9 @@
-package com.company;
+package com.company.utils;
 
 import java.util.Scanner;
 
 public class ConsoleHelper {
-    public static int InputInt(String message) {
+    public static int inputInt(String message) {
         boolean isNumber;
         int number = 0;
 
@@ -22,7 +22,7 @@ public class ConsoleHelper {
 
         return number;
     }
-    public static int InputInt(String message, int minValue, int maxValue) {
+    public static int inputInt(String message, int minValue, int maxValue) {
         boolean isNumber;
         int number = 0;
 
@@ -47,7 +47,7 @@ public class ConsoleHelper {
         return number;
     }
 
-    public static double InputDouble(String message) {
+    public static double inputDouble(String message) {
         boolean isNumber;
         double number = 0;
 
@@ -67,7 +67,7 @@ public class ConsoleHelper {
         return number;
     }
 
-    public static String InputString(String message) {
+    public static String inputString(String message) {
         boolean isString;
         String string = "";
 
@@ -87,7 +87,7 @@ public class ConsoleHelper {
         return string;
     }
 
-    public static void PrintMessage(String message){
+    public static void printlnMessage(String message){
         System.out.println(message);
     }
 }
